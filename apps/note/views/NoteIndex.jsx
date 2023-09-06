@@ -10,16 +10,6 @@ export function NoteIndex() {
     const [notes, setNotes] = useState(null)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
-    // useEffect(() => {
-    //     noteService.query()
-    //         .then(notes => {
-    //                 console.log('b',notes);
-    //             setNotes(notes)
-    //                 console.log('a',notes);
-    //         })
-    //         .catch(err => console.log('err:', err))
-    // }, [])
-
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => setNotes(notes))
@@ -47,7 +37,6 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <div>note app</div>
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
 
         </section>

@@ -29,7 +29,7 @@ function query(filterBy = {}) {
 }
 
 function getDefaultFilter() {
-    return { type: '' }
+    return { txt: '' }
 }
 
 function get(noteId) {
