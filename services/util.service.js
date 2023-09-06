@@ -65,14 +65,13 @@ function getMonthName(date) {
 function animateCSS(el, animation) {
     const prefix = 'animate__'
     return new Promise((resolve, reject) => {
-    const animationName = `${prefix}${animation}`
-    el.classList.add(`${prefix}animated`, animationName)
-    function handleAnimationEnd(event) {
-    event.stopPropagation()
-    el.classList.remove(`${prefix}animated`, animationName)
-    resolve('Animation ended')
-    }
-    el.addEventListener('animationend', handleAnimationEnd, { once: true })
+        const animationName = `${prefix}${animation}`
+        el.classList.add(`${prefix}animated`, animationName)
+        function handleAnimationEnd(event) {
+            event.stopPropagation()
+            el.classList.remove(`${prefix}animated`, animationName)
+            resolve('Animation ended')
+        }
+        el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
-    }
-    
+}
