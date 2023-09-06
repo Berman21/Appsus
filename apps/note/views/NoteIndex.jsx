@@ -10,16 +10,31 @@ export function NoteIndex() {
     useEffect(() => {
         const notes = noteService.getNotes()
         setNotes(notes)
-        console.log(notes);
-        console.log('notes');
     }, [])
 
-    if (!notes) return <div>Loading...</div>
+    function onRemoveNote(noteId) {
+        console.log('hi');
+        console.log(noteId);
+        noteService.remove(noteId)
+        .then(() => {
+            setNotes(prevNotes => {
+                console.log(prevNotes);
+                    prevNotes.filter(note => note.id !== noteId)
+                })
+                showSuccessMsg(`note Removed! ${noteId}`)
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem Removing ' + noteId)
+            })
+    }
 
+    if (!notes) return <div>Loading...</div>
     return (
-        <section>
+        <section className="note-index">
             <div>note app</div>
-            <NoteList notes={notes} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+
         </section>
     )
 }

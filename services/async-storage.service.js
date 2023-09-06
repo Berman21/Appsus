@@ -1,4 +1,4 @@
-export const storageService = {
+    export const storageService = {
     query,
     get,
     post,
@@ -40,6 +40,7 @@ function put(entityType, updatedEntity) {
 }
 
 function remove(entityType, entityId) {
+    console.log(entityType, entityId);
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity.id === entityId)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
