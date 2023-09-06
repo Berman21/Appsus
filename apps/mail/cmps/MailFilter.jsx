@@ -38,17 +38,14 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     }
 
     const { txt, isRead } = filterByToEdit
+
     return (
         <section className="Mail-filter">
-            <h2>Filter Our Cars</h2>
             <form onSubmit={onSubmitFilter}>
-                <label htmlFor="txt">Vendor: </label>
-                <input value={txt} onChange={handleChange} type="text" placeholder="By Vendor" id="txt" name="txt" />
 
+                <label htmlFor="txt"></label>
+                <input value={txt} onChange={handleChange} type="text" placeholder="Search mail" id="txt" name="txt" />
                 <ToggleisRead val={isOn} setVal={setIsOn} />
-
-                <label htmlFor="minSpeed">Min Speed: </label>
-                <input value={isRead} onChange={handleChange} type="number" placeholder="By Min Speed" id="minSpeed" name="minSpeed" />
 
                 <button>Set Filter</button>
             </form>
