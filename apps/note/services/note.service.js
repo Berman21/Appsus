@@ -9,10 +9,10 @@ _createNotes()
 
 export const noteService = {
     query,
-    getNotes,
     get,
     remove,
     save,
+    getEmptyNote,
     getDefaultFilter,
 }
 
@@ -52,41 +52,56 @@ function save(note) {
     }
 }
 
+function getEmptyNote(createdAt='',type='',isPinned='',style='',info=''){
+    return {createdAt,type,isPinned,style,info}
+}
+
+function _createNote(createdAt,type,isPinned,style,info){
+    const note = getEmptyNote(createdAt,type,isPinned,style,info)
+    note.id = utilService.makeId()
+    return note
+}
+
 function _createNotes() {
     let notes = storageServiceSync.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        notes = [
-            {
-                id: 'n101',
-                createdAt: 1112222,
-                type: 'NoteTxt',
-                isPinned: true,
-                style: {
-                    backgroundColor: '#FFB6B9',
-                },
-                info: {
-                    txt: 'Fullstack Me Baby!'
-                }
-            },
-            {
-                id: 'n102',
-                createdAt: 1113322,
-                type: 'NoteTxt',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#BBDED6',
-                },
-                info: {
-                    txt: 'Color Palettes for Designers'
-                }
-            },
-        ]
+        notes = []
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#FFB6B9'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#FFB6B9'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#FFB6B9'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#FFB6B9'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#FFB6B9'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#BBDED6'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#BBDED6'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#BBDED6'},{txt:'Fullstack Me Baby!'}))
+        notes.push(_createNote(1112222,'NoteTxt',true,{backgroundColor:'#BBDED6'},{txt:'Fullstack Me Baby!'}))
+        // notes = [
+        //     {
+        //         id: 'n101',
+        //         createdAt: 1112222,
+        //         type: 'NoteTxt',
+        //         isPinned: true,
+        //         style: {
+        //             backgroundColor: '#FFB6B9',
+        //         },
+        //         info: {
+        //             txt: 'Fullstack Me Baby!'
+        //         }
+        //     },
+        //     {
+        //         id: 'n102',
+        //         createdAt: 1113322,
+        //         type: 'NoteTxt',
+        //         isPinned: false,
+        //         style: {
+        //             backgroundColor: '#BBDED6',
+        //         },
+        //         info: {
+        //             txt: 'Color Palettes for Designers'
+        //         }
+        //     },
+        // ]
         storageServiceSync.saveToStorage(NOTE_KEY, notes)
     }
-    console.log(notes);
-    // return notes
 }
 
-function getNotes() {
-    return _createNotes()
-}
