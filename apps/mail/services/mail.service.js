@@ -66,7 +66,7 @@ function save(mail) {
     }
 }
 
-function getEmptyCar(vendor = '', maxSpeed = '') {
+function getEmptyMail(vendor = '', maxSpeed = '') {
     return { vendor, maxSpeed }
 }
 
@@ -74,7 +74,7 @@ function getDefaultFilter() {
     return { txt: '', minSpeed: '' }
 }
 
-function _createCar(vendor, maxSpeed = 250) {
+function _createMail(vendor, maxSpeed = 250) {
     const car = getEmptyCar(vendor, maxSpeed)
     car.id = utilService.makeId()
     return car
