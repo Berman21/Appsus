@@ -3,28 +3,34 @@ import { storageServiceSync } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 const NOTE_KEY = 'noteDB'
-_createNotes
+_createNotes()
 
 // console.log('hi');
 
 export const noteService = {
-    // query,
+    query,
     getNotes,
     get,
     remove,
     save,
+    getDefaultFilter,
 }
 
-// function query(filterBy = {}) {
-//     return storageService.query(NOTE_KEY)
-//         .then(notes => {
-//             if (filterBy.txt) {
-//                 const regExp = new RegExp(filterBy.txt, 'i')
-//                 notes = notes.filter(note => regExp.test(note.type))
-//             }
-//             return notes
-//         })
-// }
+function query(filterBy = {}) {
+    return storageService.query(NOTE_KEY)
+        .then(notes => {
+            if (filterBy.type) {
+                const regExp = new RegExp(filterBy.type, 'i')
+                notes = notes.filter(note => regExp.test(note.type))
+            }
+            // console.log(notes);
+            return notes
+        })
+}
+
+function getDefaultFilter() {
+    return { type: '' }
+}
 
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
@@ -77,8 +83,8 @@ function _createNotes() {
         ]
         storageServiceSync.saveToStorage(NOTE_KEY, notes)
     }
-    // console.log(notes);
-    return notes
+    console.log(notes);
+    // return notes
 }
 
 function getNotes() {
