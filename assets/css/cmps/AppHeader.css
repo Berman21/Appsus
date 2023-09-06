@@ -10,15 +10,65 @@ header {
     padding: 20px 0;
 }
 
-nav a {
+.main-nav {
+    position: absolute;
+    left: 89%;
+    top: 9%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 70px);
+    justify-items: center;
+
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.main-nav i {
+    font-size: 2em;
+    padding: 12px 10px;
+    width: 40px;
+
+    text-align: center;
+    border-radius: 10px;
+}
+
+.main-nav i:hover {
+    background-color: #e7eaea;
+}
+
+.nav-btn {
+    font-size: 1.8em;
+    margin-inline-end: 20px;
+    background-color: inherit;
+    border: none;
+    width: 50px;
+    height: 50px;
+
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: lightgray;
+}
+
+.nav-btn i {
+    padding: .5px;
+    color: gray
+}
+
+.main-nav a {
     margin: .5em;
 }
 
-nav a:active {
+.main-nav a:active {
     color: purple;
 }
 
-nav a.active {
+.main-nav a.active {
     color: darkblue;
     font-weight: bold;
     text-decoration: overline;
