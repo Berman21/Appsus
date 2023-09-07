@@ -1,8 +1,10 @@
-export function MailSideBar() {
+const { Link } = ReactRouterDOM
 
+export function MailSideBar() {
+  
     return (
         <section>
-            <button>Compose</button>
+            <button><Link to={`/mail/compose`}>Compose</Link></button>
             <article>Inbox</article>
             <article>Starred</article>
             <article>Sent</article>
