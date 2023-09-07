@@ -1,9 +1,13 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
-import {NoteFilter} from "../cmps/NoteFilter.jsx"
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
+// import { AddNote } from "../cmps/AddNote.jsx"
+import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
+// const Router = ReactRouterDOM.HashRouter
+const { Link, Outlet } = ReactRouterDOM
 
 export function NoteIndex() {
 
@@ -12,10 +16,13 @@ export function NoteIndex() {
 
     useEffect(() => {
         noteService.query(filterBy)
-            .then(notes => setNotes(notes))
+            .then(notes => {
+                console.log(notes);
+                setNotes(notes)
+            })
             .catch(err => console.log('err:', err))
     }, [filterBy])
-    
+
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
@@ -35,10 +42,17 @@ export function NoteIndex() {
 
     if (!notes) return <div>Loading...</div>
     return (
+
         <section className="note-index">
+            {/* <AddNote /> */}
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            <Link to="/note/edit" >Add Note</Link>
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
 
+            <section>
+                <Outlet />
+            </section>
         </section>
+
     )
 }
