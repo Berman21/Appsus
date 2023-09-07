@@ -1,7 +1,9 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
-import { showErrorMsg, showSuccessMsg, eventBusService } from "../../../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+
+// יש קומפוננטה של add note האם באמת צריך או למחוק? 
 
 const { useState, useEffect } = React
 const { Link, Outlet } = ReactRouterDOM
@@ -22,6 +24,7 @@ export function NoteIndex() {
     }, [filterBy])
 
     function onSetFilterBy(filterBy) {
+        console.log(filterBy);
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 

@@ -21,3 +21,47 @@
  /* .note-preview p {
 
  } */
+
+ .card-tools {
+     display: grid;
+     grid-auto-flow: column;
+
+     grid-auto-columns: 50px;
+
+     place-items: center;
+
+     grid-area: 2 / 1;
+     place-self: start;
+
+     /* position: absolute; */
+
+     /* right: 80px; */
+
+     width: 0;
+
+     opacity: 0;
+
+     padding: 8px;
+     /* background: linear-gradient(to right, whitesmoke, transparent); */
+     margin-block-start: 40px;
+     color: darkgray;
+
+     transition: 200ms ease-out;
+     /* transition: var(--duration-short) ease-out; */
+ }
+
+ .card:hover .card-tools {
+     transition-delay: 150ms;
+     /* transition-delay: var(--delay-short); */
+     opacity: 1;
+     right: 400px;
+     /* right: var(--margin-inline); */
+     width: 300px;
+     /* width: calc(var(--image-width) - var(--margin-inline) * 2); */
+ }
+
+ .card-tools>* {
+     background-color: inherit;
+     border: none;
+     font-size: 1.1em;
+ }

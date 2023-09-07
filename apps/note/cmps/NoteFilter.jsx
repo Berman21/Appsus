@@ -29,12 +29,19 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
+    // function handleTxtChange({ target }) {
+    //     let value = target.value
+    //     const info = { ...filterByToEdit.info, txt: value }
+    //     console.log(info);
+    //     setFilterByToEdit(prevFilter => ({ ...prevFilter, info }))
+    // }
+
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt, isRead } = filterByToEdit
+    const { type: txt } = filterByToEdit
 
     return (
         <section className="Note-filter">
