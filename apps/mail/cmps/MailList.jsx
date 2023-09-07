@@ -1,21 +1,24 @@
 import { MailPreview } from "./MailPreview.jsx"
 const { Link, useNavigate } = ReactRouterDOM
 
-export function MailList({ mails, onRemoveMail }) {
+export function MailList({ mails, onRemoveMail, onSaveMail }) {
 
     const navigate = useNavigate()
 
-    function navTo(mailId) {
-        navigate(`/mail/${mailId}`)
+    function openMail(mail) {
+        console.log(mails);
+        mail.isRead = true
+        onSaveMail(mail)
+        navigate(`/mail/${mail.id}`)
     }
 
-   
+
 
     return (
         <table>
             <tbody>
                 {mails.map(mail =>
-                    <tr className="mail-preview" key={mail.id} onClick={() => navTo(mail.id)}>
+                    <tr className="mail-preview" key={mail.id} onClick={() => openMail(mail)}>
                         <MailPreview mail={mail} onRemoveMail={onRemoveMail} />
                     </tr>
                 )}

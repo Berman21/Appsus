@@ -1,4 +1,6 @@
 import { MailList } from "../cmps/MailList.jsx"
+import { MailSideBar } from "../cmps/MailSideBar.jsx"
+import { MailForm } from "../cmps/MailForm.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
@@ -17,15 +19,20 @@ export function MailIndex() {
             .catch(err => console.log('err:', err))
     }, [filterBy])
 
+
+
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onSaveMail(mail) {
+        mailService.save(mail)
+    }
+
     function onRemoveMail(mailId) {
-        
         mailService.remove(mailId)
             .then(() => {
-                setMails(prevCars => prevCars.filter(mail => mail.id !== mailId))
+                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
                 showSuccessMsg(`Mail moved to bin ${mailId}`)
             })
             .catch(err => {
@@ -38,8 +45,9 @@ export function MailIndex() {
     return (
         <section>
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <MailList mails={mails} onRemoveMail={onRemoveMail} />
-
+            <MailSideBar />
+            <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} />
+            <MailForm />
         </section>
     )
 }
