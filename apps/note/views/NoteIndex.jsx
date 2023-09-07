@@ -1,8 +1,6 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
-// import { AddNote } from "../cmps/AddNote.jsx"
-// import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { showErrorMsg, showSuccessMsg, eventBusService } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
@@ -49,10 +47,8 @@ export function NoteIndex() {
 
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <Link to="/note/edit" onloadNotes={onLoadNotes} >Add Note</Link>
+            <Link to="/note/edit">Add Note</Link>
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
-
-            <button onClick={() => onLoadNotes()}>load</button>
 
             <section>
                 <Outlet context={{ onLoadNotes }} />

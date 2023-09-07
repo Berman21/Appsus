@@ -8,16 +8,16 @@ export function NoteList({ notes, onRemoveNote }) {
 
 
     return (
-        <ul className="note-list">
+        <article className="cards ">
             {notes.map(note =>
-                <li className="note-list" key={note.id} style={note.style}>
+                <div className="card" key={note.id} style={note.style}>
                     <NotePreview note={note} />
                     <section>
-                        <button onClick={() => onRemoveNote(note.id)}>Remove note</button>
-                        <button><Link to={`/note/edit/${note.id}`}>Edit</Link></button>
+                        <button onClick={() => onRemoveNote(note.id)}><i class="fa-solid fa-trash-can"></i></button>
+                        <button><Link to={`/note/edit/${note.id}`}><i class="fa-solid fa-pen-to-square"></i></Link></button>
                     </section>
-                </li>
+                </div>
             )}
-        </ul>
+        </article>
     )
 }

@@ -21,7 +21,6 @@ export function NoteEdit() {
             .catch(err => console.log('err:', err))
     }
 
-
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
@@ -58,9 +57,6 @@ export function NoteEdit() {
             .catch(err => console.log('err:', err))
 
     }
-
-    console.log('noteToEdit', noteToEdit);
-    // const { vendor, maxSpeed } = noteToEdit
 
     return (
         <section className="car-edit">

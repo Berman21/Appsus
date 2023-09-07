@@ -1,1 +1,23 @@
  /* note index */
+
+ .cards {
+     width: 80vw;
+     margin: auto;
+     columns: 4 220px;
+     column-gap: 12px;
+ }
+
+ .card {
+     margin-bottom: 1rem;
+     break-inside: avoid;
+     border-radius: 12px;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     border: 1px solid gainsboro;
+     /* overflow: hidden; */
+ }
+
+ /* .note-preview p {
+
+ } */
