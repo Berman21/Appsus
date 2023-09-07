@@ -3,7 +3,7 @@ const { Link } = ReactRouterDOM
 export function MailSideBar() {
   
     return (
-        <section>
+        <section className='mail-side-bar'>
             <button><Link to={`/mail/compose`}>Compose</Link></button>
             <article>Inbox</article>
             <article>Starred</article>
