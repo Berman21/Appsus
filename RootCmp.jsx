@@ -21,14 +21,10 @@ export function App() {
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/mail/:mailId" element={<MailDetails />} />
 
-                <Route path="/note" element={<NoteIndex />} />
-                <Route path="/note/edit/:noteId" element={<NoteEdit />} />
-                <Route path="/note/edit" element={<NoteEdit />} />
-
-                {/* <Route path="/note" element={<NoteIndex />} >
+                <Route path="/note" element={<NoteIndex />} >
                     <Route path="/note/edit/:noteId" element={<NoteEdit onloadNotes={NoteIndex.onloadNotes} />} />
-                    <Route path="/note/edit" element={<NoteEdit onloadNotes={NoteIndex.onloadNotes}/>} />
-                </Route> */}
+                    <Route path="/note/edit" element={<NoteEdit onloadNotes={NoteIndex.onloadNotes} />} />
+                </Route>
 
             </Routes>
         </section>
