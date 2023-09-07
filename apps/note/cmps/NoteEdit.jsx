@@ -1,10 +1,12 @@
 import { noteService } from "../services/note.service.js"
+// import { NoteIndex } from "../NoteIndex.js"
+import { showErrorMsg, showSuccessMsg, eventBusService } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
 
-export function NoteEdit() {
+export function NoteEdit({ onloadNotes }) {
 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
@@ -52,11 +54,15 @@ export function NoteEdit() {
     function onSaveNote(ev) {
         ev.preventDefault()
         noteService.save(noteToEdit)
-            .then(() => navigate('/note'))
+            .then(() => {
+                navigate('/note')
+                // eventBusService.on('onLoadNotes', (data) => data())
+            })
             .catch(err => console.log('err:', err))
 
     }
 
+    console.log('noteToEdit', noteToEdit);
     // const { vendor, maxSpeed } = noteToEdit
 
     return (
