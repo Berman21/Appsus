@@ -4,7 +4,7 @@ import { eventBusService, showErrorMsg, showSuccessMsg } from "../../../services
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function MailForm() {
+export function MailCompose() {
 
     const [mailToSend, setMailToSend] = useState(mailService.getEmptyMail())
     const navigate = useNavigate()
@@ -57,6 +57,7 @@ export function MailForm() {
             .catch(err => {
                 console.log('err',err)
                 showErrorMsg('Couldent send mail')
+                navigate('/mail')
             })
     }
 

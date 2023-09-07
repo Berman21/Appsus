@@ -1,6 +1,6 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSideBar } from "../cmps/MailSideBar.jsx"
-import { MailForm } from "../cmps/MailForm.jsx"
+import { MailCompose } from "../cmps/MailCompose.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
@@ -47,7 +47,7 @@ export function MailIndex() {
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <MailSideBar />
             <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} />
-            <MailForm />
+            <MailCompose />
         </section>
     )
 }
