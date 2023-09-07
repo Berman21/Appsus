@@ -9,9 +9,7 @@ export function MailList({ mails, onRemoveMail }) {
         navigate(`/mail/${mailId}`)
     }
 
-    function onOpenDetails(mailId) {
-        console.log(mailId);
-    }
+   
 
     return (
         <table>

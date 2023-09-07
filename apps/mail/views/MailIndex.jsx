@@ -22,7 +22,8 @@ export function MailIndex() {
     }
 
     function onRemoveMail(mailId) {
-        carService.remove(mailId)
+        
+        mailService.remove(mailId)
             .then(() => {
                 setMails(prevCars => prevCars.filter(mail => mail.id !== mailId))
                 showSuccessMsg(`Mail moved to bin ${mailId}`)
