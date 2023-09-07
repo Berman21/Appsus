@@ -1,3 +1,12 @@
  /* mail index  */
 
- 
+ html,body {
+     height: 100%;
+ }
+
+ .mail-main-screen {
+     display: flex;
+     flex-direction: row;
+     align-self: stretch;
+     border: 2px solid yellow;
+ }

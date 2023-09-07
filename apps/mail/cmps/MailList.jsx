@@ -15,14 +15,21 @@ export function MailList({ mails, onRemoveMail, onSaveMail }) {
 
 
     return (
-        <table>
-            <tbody>
-                {mails.map(mail =>
-                    <tr className="mail-preview" key={mail.id} onClick={() => openMail(mail)}>
-                        <MailPreview mail={mail} onRemoveMail={onRemoveMail} />
-                    </tr>
-                )}
-            </tbody>
-        </table>
+        <section className='mail-list'>
+            <article>
+                <button>Primary</button>
+                <button>Read</button>
+                <button>Unread</button>
+            </article>
+            <table>
+                <tbody>
+                    {mails.map(mail =>
+                        <tr className="mail-preview" key={mail.id} onClick={() => openMail(mail)}>
+                            <MailPreview mail={mail} onRemoveMail={onRemoveMail} />
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </section>
     )
 }

@@ -43,11 +43,13 @@ export function MailIndex() {
 
     if (!mails) return <div>Loading...</div>
     return (
-        <section>
+        <section className='mail-index'>
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <MailSideBar />
-            <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} />
-            <MailCompose />
+            <article className='mail-main-screen flex'>
+                <MailSideBar />
+                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} />
+            </article>
+            {false && <MailCompose />}
         </section>
     )
 }
