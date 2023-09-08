@@ -1,2 +1,69 @@
  /* mail list */
 
+ .mail-list {
+     flex: 1;
+     height: 85vh;
+     overflow-y: scroll;
+     background-color: white;
+     margin: 0px 10px 10px 0px;
+     border-radius: 10px;
+ }
+
+ .mail-list table {
+     width: 100%;
+     table-layout: fixed;
+ }
+
+ tr {
+     box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, 0.122);
+     cursor: pointer;
+ }
+
+ .mail-preview:hover {
+     box-shadow: inset 0 -2px 0 0 rgba(100, 121, 143, 0.292);
+ }
+
+ table td:first-child {
+     width: 20px;
+ }
+
+ tr :nth-child(2) {
+     width: 200px;
+ }
+
+ tr :nth-child(4) {
+     width: 150px;
+     text-align: end;
+ }
+
+ tr :nth-child(5) {
+     width: 20px;
+ }
+
+ tr :nth-child(6) {
+     width: 20px;
+ }
+
+ td {
+     text-align: start;
+     text-wrap: nowrap;
+
+     padding-top: 10px;
+     padding-bottom: 10px;
+ }
+
+ td div {
+     width: 100%;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+
+ .mail-list td span:last-of-type {
+     width: 100px;
+
+ }
+
+ .unread {
+     background-color: #f2f6fc;
+ }

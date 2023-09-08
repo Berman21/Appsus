@@ -11,8 +11,8 @@ export function MailPreview({ mail, onRemoveMail }) {
         <React.Fragment>
             <td><i className="fa-regular fa-star"></i></td>
             <td>{mail.from}</td>
-            <td>{mail.subject}</td>
-            <td>{mail.body}</td>
+            <td><div>{mail.subject}<span>-</span><span>{mail.body}</span></div></td>
+            {/* <td>{mail.body}</td> */}
             <td>{mail.sentAt}</td>
             <td onClick={(event) => handleClick(event, mail.id)} ><i className="fa-regular fa-trash-can"></i></td>
             {mail.isRead === false && <td onClick={(event) => toggleRead(event, mail)}><i className="fa-regular fa-envelope"></i></td>}
