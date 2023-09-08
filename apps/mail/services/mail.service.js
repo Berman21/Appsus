@@ -24,13 +24,23 @@ export const mailService = {
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
+            console.log(filterBy);
+            
+            if (filterBy.isRead === null) {
+                console.log('get all mails');
+                mails = mails.filter(mail => mail)
+            }
+            else if (filterBy.isRead) {
+                console.log('get read mails');
+                mails = mails.filter(mail => mail.isRead)
+            }
+            else if (!filterBy.isRead) {
+                console.log('get unread mails');
+                mails = mails.filter(mail => !mail.isRead)
+            }
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
-            }
-
-            if (filterBy.minSpeed) {
-                cars = cars.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
             }
 
             return mails
@@ -39,13 +49,14 @@ function query(filterBy = {}) {
 
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
-        // .then(mail => {
-        //     mail = _setNextPrevCarId(car)
-        //     return mail
-        // })
+    // .then(mail => {
+    //     mail = _setNextPrevCarId(car)
+    //     return mail
+    // })
 }
 
 function remove(mailId) {
+    console.log('removed', mailId);
     return storageService.remove(MAIL_KEY, mailId)
 }
 
@@ -62,7 +73,7 @@ function getEmptyMail(subject = '', body = '', isRead = '', sentAt = '', removed
 }
 
 function getDefaultFilter() {
-    return { txt: '', isRead: '' }
+    return { txt: '', isRead: null }
 }
 
 function _createMail(subject, body, isRead, sentAt, removedAt, from, to) {

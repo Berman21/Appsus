@@ -5,6 +5,12 @@ export function MailList({ mails, onRemoveMail, onSaveMail,onToggleRead }) {
 
     const navigate = useNavigate()
 
+    function handleClick(ev, mail) {
+        ev.stopPropagation()
+        openMail(mail)
+        console.log('from open');
+    }
+
     function openMail(mail) {
         mail.isRead = true
         onSaveMail(mail)
@@ -23,7 +29,7 @@ export function MailList({ mails, onRemoveMail, onSaveMail,onToggleRead }) {
             <table>
                 <tbody>
                     {mails.map(mail =>
-                        <tr className="mail-preview" key={mail.id} onClick={() => openMail(mail)}>
+                        <tr className="mail-preview" key={mail.id} onClick={(event) => handleClick(event,mail)}>
                             <MailPreview mail={mail} onRemoveMail={onRemoveMail} onToggleRead={onToggleRead} />
                         </tr>
                     )}

@@ -26,6 +26,8 @@ export function MailIndex() {
 
     function onSaveMail(mail) {
         mailService.save(mail)
+        console.log('hi');
+        setMails(prevMails => ({ ...prevMails }))
     }
 
     function onRemoveMail(mailId) {
@@ -52,7 +54,7 @@ export function MailIndex() {
             <MailFilter searchBar={true} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <article className='mail-main-screen flex'>
                 <MailFilter searchBar={false} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead}  />
+                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead} />
             </article>
             {false && <MailCompose />}
         </section>
