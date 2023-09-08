@@ -1,9 +1,10 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
-// יש קומפוננטה של add note האם באמת צריך או למחוק? 
+import { NoteEdit } from "../cmps/NoteEdit.jsx"
+
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 const { Link, Outlet } = ReactRouterDOM
@@ -16,7 +17,7 @@ export function NoteIndex() {
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                console.log(notes);
+                // console.log(notes);
                 setNotes(notes)
 
             })
@@ -24,7 +25,7 @@ export function NoteIndex() {
     }, [filterBy])
 
     function onSetFilterBy(filterBy) {
-        console.log(filterBy);
+        // console.log(filterBy);
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
@@ -40,6 +41,16 @@ export function NoteIndex() {
             })
     }
 
+    function onDuplicateNote(createdAt, type, isPinned, style, info) {
+        const newNote = noteService.duplicateNote(createdAt, type, isPinned, style, info)
+        console.log('newNote', newNote);
+        console.log('notes', notes);
+        notes.push(newNote)
+        console.log('newNote', newNote);
+        console.log('notes', notes);
+        onLoadNotes()
+    }
+
     function onLoadNotes() {
         noteService.query(filterBy)
             .then(notes => setNotes(notes))
@@ -49,13 +60,16 @@ export function NoteIndex() {
     return (
 
         <section className="note-index">
-            <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <Link to="/note/edit">Add Note</Link>
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
 
             <section>
                 <Outlet context={{ onLoadNotes }} />
             </section>
+
+            <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            {/* <NoteEdit /> */}
+            <Link to="/note/edit">Add Note</Link>
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} />
+
         </section>
 
     )

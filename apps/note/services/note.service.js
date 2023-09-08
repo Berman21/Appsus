@@ -14,10 +14,11 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
+    duplicateNote,
 }
 
 function query(filterBy = {}) {
-    console.log(filterBy);
+    // console.log(filterBy);
     return storageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.type) {
@@ -93,6 +94,14 @@ function _createNotes() {
     }
 }
 
+function duplicateNote(createdAt, type, isPinned, style, info) {
+    // console.log(createdAt);
+    // console.log(type);
+    // console.log(isPinned);
+    // console.log(style);
+    // console.log(info);
+    return _createNote(createdAt, type, isPinned, style, info)
+}
 // notes = [
 //     {
 //         id: 'n101',

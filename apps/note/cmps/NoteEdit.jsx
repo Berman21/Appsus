@@ -7,12 +7,17 @@ const { useNavigate, useParams, useOutletContext } = ReactRouterDOM
 export function NoteEdit() {
 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [editClass, setEditClass] = useState('add-note')
     const navigate = useNavigate()
     const params = useParams()
     const { onLoadNotes } = useOutletContext()
 
     useEffect(() => {
-        if (params.noteId) loadNote()
+        if (params.noteId) {
+            loadNote()
+            setEditClass('edit-note')
+        }
+        if (!params.noteId) setEditClass('add-note')
     }, [])
 
     function loadNote() {
@@ -60,13 +65,16 @@ export function NoteEdit() {
     }
 
     return (
-        <section className="car-edit">
-            <form onSubmit={onSaveNote} >
-                <label htmlFor="txt">Txt:</label>
-                <input onChange={handleTxtChange} value={noteToEdit.info.txt} type="text" name="txt" id="txt" />
+        <section className={editClass}>
+            <div className="backdrop"></div>
+                <form onSubmit={onSaveNote} >
 
-                <button>Save</button>
-            </form>
+                    <label htmlFor="txt"></label>
+                    <input className="txt-input" onChange={handleTxtChange}
+                        value={noteToEdit.info.txt} type="text" name="txt" id="txt" placeholder="Add text.." />
+
+                    <button className="submit-btn">Save</button>
+                </form>
         </section>
     )
 }

@@ -25,8 +25,8 @@ export function App() {
                 <Route path="/mail/compose" element={<MailCompose />} />
 
                 <Route path="/note" element={<NoteIndex />} >
-                    <Route path="/note/edit/:noteId" element={<NoteEdit onloadNotes={NoteIndex.onloadNotes} />} />
-                    <Route path="/note/edit" element={<NoteEdit onloadNotes={NoteIndex.onloadNotes} />} />
+                    <Route path="/note/edit/:noteId" element={<NoteEdit />} />
+                    <Route path="/note/edit" element={<NoteEdit />} />
                 </Route>
 
             </Routes>
