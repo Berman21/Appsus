@@ -1,5 +1,4 @@
 import { MailList } from "../cmps/MailList.jsx"
-import { MailSideBar } from "../cmps/MailSideBar.jsx"
 import { MailCompose } from "../cmps/MailCompose.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
@@ -50,9 +49,9 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     return (
         <section className='mail-index'>
-            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            <MailFilter searchBar={true} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <article className='mail-main-screen flex'>
-                <MailSideBar />
+                <MailFilter searchBar={false} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
                 <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead}  />
             </article>
             {false && <MailCompose />}
