@@ -63,9 +63,6 @@ function getEmptyNote(createdAt = 1112222, type = 'NoteTxt', isPinned = false, s
         isPinned,
         style,
         info,
-        // info: {
-        //     txt,
-        // }
     }
 }
 
@@ -95,13 +92,10 @@ function _createNotes() {
 }
 
 function duplicateNote(createdAt, type, isPinned, style, info) {
-    // console.log(createdAt);
-    // console.log(type);
-    // console.log(isPinned);
-    // console.log(style);
-    // console.log(info);
-    return _createNote(createdAt, type, isPinned, style, info)
+    let dupNote = getEmptyNote(createdAt, type, isPinned, style, info)
+    save(dupNote)
 }
+
 // notes = [
 //     {
 //         id: 'n101',

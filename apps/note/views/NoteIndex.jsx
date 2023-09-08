@@ -41,19 +41,34 @@ export function NoteIndex() {
             })
     }
 
-    function onDuplicateNote(createdAt, type, isPinned, style, info) {
-        const newNote = noteService.duplicateNote(createdAt, type, isPinned, style, info)
-        console.log('newNote', newNote);
-        console.log('notes', notes);
-        notes.push(newNote)
-        console.log('newNote', newNote);
-        console.log('notes', notes);
+    function onDuplicateNote({ createdAt, type, isPinned, style, info }) {
+        noteService.duplicateNote(createdAt, type, isPinned, style, info)
+        onLoadNotes()
+    }
+
+    function onChangeColor(noteId, color) {
+
+        const newArr = notes.find(note => {
+            if (note.id === noteId) {
+                note.style = color
+                return note
+                // return { ...note, style: color }
+                // console.log({ ...note, style: color });
+            }
+        })
+
+        console.log(newArr);
+        noteService.save(newArr)
+
         onLoadNotes()
     }
 
     function onLoadNotes() {
         noteService.query(filterBy)
-            .then(notes => setNotes(notes))
+            .then(notes => {
+                console.log(notes);
+                setNotes(notes)
+            })
     }
 
     if (!notes) return <div>Loading...</div>
@@ -68,7 +83,8 @@ export function NoteIndex() {
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             {/* <NoteEdit /> */}
             <Link to="/note/edit">Add Note</Link>
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote}
+                onChangeColor={onChangeColor} />
 
         </section>
 
