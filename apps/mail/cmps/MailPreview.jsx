@@ -1,9 +1,14 @@
 const { Link, NavLink, useNavigate } = ReactRouterDOM
 
-export function MailPreview({ mail, onRemoveMail }) {
+export function MailPreview({ mail, onRemoveMail,onToggleRead }) {
 
     function handleClick(ev, mailId) {
         onRemoveMail(mailId)
+        ev.stopPropagation()
+    }
+
+    function toggleRead(ev, mail) {
+        onToggleRead(mail)
         ev.stopPropagation()
     }
 

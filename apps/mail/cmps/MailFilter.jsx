@@ -1,5 +1,3 @@
-import { ToggleisRead } from "./ToggleIsRead.jsx"
-
 const { useState, useEffect } = React
 
 export function MailFilter({ filterBy, onSetFilterBy }) {
@@ -45,7 +43,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
 
                 <label htmlFor="txt"></label>
                 <input value={txt} onChange={handleChange} type="text" placeholder="Search mail" id="txt" name="txt" />
-                <ToggleisRead val={isOn} setVal={setIsOn} />
+                
             </form>
         </section>
     )
