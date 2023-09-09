@@ -49,7 +49,6 @@ export function NoteEdit() {
     function handleTxtChange({ target }) {
         let value = target.value
         const info = { ...noteToEdit.info, txt: value }
-        console.log(info);
         setNoteToEdit(prevNoteToEdit => ({ ...prevNoteToEdit, info }))
     }
 

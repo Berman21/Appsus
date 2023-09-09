@@ -5,6 +5,7 @@
      margin: auto;
      columns: 4 220px;
      column-gap: 12px;
+     margin-block-start: 50px;
  }
 
  .card {
@@ -15,49 +16,32 @@
      display: flex;
      flex-direction: column;
      border: 1px solid gainsboro;
-     /* overflow: hidden; */
  }
-
- /* .note-preview p {
-
- } */
 
  .card-tools {
      display: grid;
      grid-auto-flow: column;
-
      grid-auto-columns: 50px;
-
      place-items: center;
-
      grid-area: 2 / 1;
      place-self: start;
 
-     /* position: absolute; */
-
-     /* right: 80px; */
-
      width: 0;
-
      opacity: 0;
-
      padding: 8px;
-     /* background: linear-gradient(to right, whitesmoke, transparent); */
+
      margin-block-start: 40px;
      color: darkgray;
 
      transition: 200ms ease-out;
-     /* transition: var(--duration-short) ease-out; */
  }
 
  .card:hover .card-tools {
      transition-delay: 150ms;
-     /* transition-delay: var(--delay-short); */
      opacity: 1;
+
      right: 400px;
-     /* right: var(--margin-inline); */
      width: 300px;
-     /* width: calc(var(--image-width) - var(--margin-inline) * 2); */
  }
 
  .card-tools>* {
@@ -67,7 +51,6 @@
  }
 
  .add-note {
-     /* background-color: aqua; */
      text-align: center;
      margin-block-start: 20px;
 
@@ -80,7 +63,7 @@
 
  .add-note .txt-input {
      height: 3rem;
-     /* width: 600px; */
+     width: 600px;
      font-size: 1.1em;
      padding-inline-start: 10px;
  }
@@ -94,17 +77,11 @@
 
      background-color: #202124;
 
-     height: 300px;
-     width: 700px;
-     
-     z-index: 1;
-     
-     /* backdrop-filter: blur(10px); */
- }
+     height: 170px;
+     width: 600px;
 
- /* .edit-note::backdrop{
-    background-color: rgb(190, 31, 31);
- } */
+     z-index: 1;
+ }
 
  .edit-note .backdrop {
      position: fixed;
@@ -119,15 +96,16 @@
      width: 100vw;
 
      background-color: #94949480;
-     /* background-color: #20212480; */
-
-     /* opacity: 0; */
-     /* transition: opacity .8s ease-in; */
  }
 
  .edit-note .submit-btn {
-     min-height: 31px;
+     min-height: 29px;
      width: 75px;
+
+     background-color: white;
+     border: none;
+     margin-inline-start: 5px;
+     font-size: 1.05em;
  }
 
  .edit-note .txt-input {
@@ -136,17 +114,20 @@
      font-size: 1.1em;
      padding-inline-start: 10px;
 
-     margin-block-start: 20px;
-     margin-inline-start: 20px;
+     margin-block-start: 40px;
+     margin-inline-start: 100px;
  }
 
  .palette {
      position: absolute;
-     margin-block-end: 65px;
+     margin-block-end: 70px;
 
      background-color: white;
      padding: 5px;
      border: solid 1px lightgray;
+     border-radius: 5px;
+
+     cursor: pointer;
  }
 
  .palette-btn {
@@ -155,5 +136,38 @@
      border-radius: 50%;
      margin-inline-end: 5px;
 
-     border: solid 1px lightgray;
+     border: none;
+     cursor: pointer;
+ }
+
+ .Note-filter {
+     position: absolute;
+     top: 5%;
+     left: 50%;
+     translate: -50% -50%;
+
+     height: 3rem;
+     width: 600px;
+     font-size: 1.1em;
+     padding-inline-start: 10px;
+
+     border-radius: 5px;
+     border: 2px solid #94949480;
+ }
+
+ .remove-btn,
+ .duplicate-btn,
+ .palette-btn {
+     cursor: pointer;
+ }
+
+ .remove-btn:hover,
+ .duplicate-btn:hover,
+ .palette-btn:hover,
+ .edit-btn:hover {
+     font-size: 1.25em;
+ }
+
+ a:-webkit-any-link {
+     cursor: pointer;
  }

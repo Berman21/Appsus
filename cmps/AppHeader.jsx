@@ -7,7 +7,6 @@ export function AppHeader() {
 
     useEffect(() => {
         setVisibility(visibility)
-        console.log(visibility);
     }, [visibility])
 
     function isVisible() {
@@ -16,16 +15,10 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <h3>LOGO!</h3>
+            <h3 className="app-logo">Appsus</h3>
         </Link>
 
         <button className="nav-btn" onClick={() => isVisible()}><i className="fa-solid fa-bars"></i> </button>
-
-        {/* <button className="nav-btn" onClick={() => isVisible()}>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-        </button> */}
 
         {visibility && <nav className="main-nav">
             <NavLink to="/"><i className="fa-solid fa-house"></i></NavLink>

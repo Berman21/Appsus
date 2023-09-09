@@ -44,13 +44,11 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
     const { type: txt } = filterByToEdit
 
     return (
-        <section className="Note-filter">
+        <section className="filter-container">
             <form onSubmit={onSubmitFilter}>
 
                 <label htmlFor="txt"></label>
-                <input value={txt} onChange={handleChange} type="text" placeholder="Search note" id="txt" name="txt" />
-
-                <button>Set Filter</button>
+                <input className="Note-filter" value={txt} onChange={handleChange} type="text" placeholder="Search note" id="txt" name="txt" />
             </form>
         </section>
     )

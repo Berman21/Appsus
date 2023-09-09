@@ -5,8 +5,6 @@ import { utilService } from '../../../services/util.service.js'
 const NOTE_KEY = 'noteDB'
 _createNotes()
 
-// console.log('hi');
-
 export const noteService = {
     query,
     get,
@@ -18,7 +16,6 @@ export const noteService = {
 }
 
 function query(filterBy = {}) {
-    // console.log(filterBy);
     return storageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.type) {
@@ -34,7 +31,6 @@ function query(filterBy = {}) {
 
 function getDefaultFilter() {
     return { txt: '' }
-    // return { type: '' }
 }
 
 function get(noteId) {
@@ -76,17 +72,17 @@ function _createNotes() {
     let notes = storageServiceSync.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = []
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#efeff1' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#e9e3d4' }, { txt: 'Fullstack' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#f6e2dd' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#d3bfdb' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#aeccdc' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#d4e4ed' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#b4ddd3' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'hi', true, { backgroundColor: '#e2f6d3' }, { txt: 'kai' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#fff8b8' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#f39f76' }, { txt: 'Fullstack Me Baby!' }))
-        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#faafa8' }, { txt: 'Fullstack Me Baby!' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#efeff1' }, { txt: 'Idea for a new project at work.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#e9e3d4' }, { txt: 'Grocery shopping list for the weekend.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#f6e2dd' }, { txt: 'Quote from TED Talk: Creativity is intelligence having fun..' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#aeccdc' }, { txt: 'Phone numbers of friends for a call.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#d4e4ed' }, { txt: 'Idea for a birthday gift.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#d3bfdb' }, { txt: 'Quote from a page in the book Im reading.'}))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#b4ddd3' }, { txt: 'Vocabulary words for learning.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#e2f6d3' }, { txt: 'Plan for a weekend getaway.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#fff8b8' }, { txt: 'Daily tasks: Pay the bill, go shopping, write an email to the manager.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#f39f76' }, { txt: 'List of movies I want to watch.' }))
+        notes.push(_createNote(1112222, 'NoteTxt', true, { backgroundColor: '#faafa8' }, { txt: 'Notes from the meeting with the team.' }))
         storageServiceSync.saveToStorage(NOTE_KEY, notes)
     }
 }
@@ -95,18 +91,3 @@ function duplicateNote(createdAt, type, isPinned, style, info) {
     let dupNote = getEmptyNote(createdAt, type, isPinned, style, info)
     save(dupNote)
 }
-
-// notes = [
-//     {
-//         id: 'n101',
-//         createdAt: 1112222,
-//         type: 'NoteTxt',
-//         isPinned: true,
-//         style: {
-//             backgroundColor: '#FFB6B9',
-//         },
-//         info: {
-//             txt: 'Fullstack Me Baby!'
-//         }
-//     }
-// ]

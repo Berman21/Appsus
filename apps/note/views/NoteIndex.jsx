@@ -1,9 +1,6 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
-
-import { NoteEdit } from "../cmps/NoteEdit.jsx"
-
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
@@ -12,21 +9,18 @@ const { Link, Outlet } = ReactRouterDOM
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
-    const [color, setColor] = useState(0)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                console.log(notes);
                 setNotes(notes)
 
             })
             .catch(err => console.log('err:', err))
-    }, [filterBy, color])
+    }, [filterBy])
 
     function onSetFilterBy(filterBy) {
-        // console.log(filterBy);
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
@@ -49,20 +43,14 @@ export function NoteIndex() {
 
     function onChangeColor(noteId, color) {
 
-        const newArr = notes.find(note => {
+        const newNote = notes.find(note => {
             if (note.id === noteId) {
                 note.style = color
                 return note
-                // return { ...note, style: color }
-                // console.log({ ...note, style: color });
             }
         })
-        
-        console.log(newArr);
-        noteService.save(newArr)
+        noteService.save(newNote)
         onLoadNotes()
-        // ++color
-        // setColor(color)
     }
 
     function onLoadNotes() {
@@ -83,8 +71,7 @@ export function NoteIndex() {
             </section>
 
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            {/* <NoteEdit /> */}
-            <Link to="/note/edit">Add Note</Link>
+            <Link className="add-note" to="/note/edit">Add Note</Link>
             <NoteList notes={notes} onRemoveNote={onRemoveNote} onDuplicateNote={onDuplicateNote}
                 onChangeColor={onChangeColor} />
 
