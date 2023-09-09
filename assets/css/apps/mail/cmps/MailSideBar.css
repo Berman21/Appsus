@@ -1,9 +1,9 @@
 .mail-side-bar {
     flex: 0 0 200px;
-
+    text-wrap: nowrap;
 }
 
-.mail-side-bar .compose{
+.mail-side-bar .compose {
     background-color: lightsteelblue;
     border-radius: 15px;
     padding: 20px;
@@ -20,6 +20,14 @@
 
 .mail-side-bar .mail-filter:hover {
     background-color: rgb(236, 236, 236);
+}
+
+.mail-side-bar .active {
+    color: aqua;
+}
+
+.mail-side-bar input {
+    opacity: 1;
 }
 
 

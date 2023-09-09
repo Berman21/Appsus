@@ -21,18 +21,14 @@ export function MailList({ mails, onRemoveMail, onSaveMail,onToggleRead }) {
 
     return (
         <section className='mail-list'>
-            <article>
-                <button>Primary</button>
-                <button>Read</button>
-                <button>Unread</button>
-            </article>
+            
             <table>
                 <tbody>
                     {mails.map(mail =>
-                        <tr className="mail-preview" key={mail.id} onClick={(event) => handleClick(event,mail)}>
-                            <MailPreview mail={mail} onRemoveMail={onRemoveMail} onToggleRead={onToggleRead} />
+                        <tr className={`mail-preview ${mail.isRead?'read':'unread'}`} key={mail.id} onClick={(event) => handleClick(event,mail)}>
+                        <MailPreview mail={mail} onRemoveMail={onRemoveMail} onToggleRead={onToggleRead} />
                         </tr>
-                    )}
+                        )}
                 </tbody>
             </table>
         </section>

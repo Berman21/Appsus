@@ -73,26 +73,26 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
 
 
                 <label htmlFor="showAll">
-                    <article className='mail-filter'><i className="fa-solid fa-inbox side-bar-tool"></i>
+                    <article className='mail-filter'><i className="fa-solid fa-envelopes-bulk side-bar-tool"></i>
                         Show all
-                        <input type="radio" id="showAll" name="isRead" value='' onChange={handleChange} />
+                        <input type="radio" id="showAll" name="isRead" value='' checked onChange={handleChange} />
                     </article>
                 </label>
 
                 <label htmlFor="isRead">
-                    <article className='mail-filter'><i className="fa-solid fa-inbox side-bar-tool"></i>
+                    <article className='mail-filter'><i className="fa-solid fa-envelope-open side-bar-tool"></i>
                         Show read mails
                         <input type="radio" id="isRead" name="isRead" value={true} onChange={handleChange} />
                     </article>
                 </label>
 
                 <label htmlFor="unread">
-                    <article className='mail-filter'><i className="fa-solid fa-inbox side-bar-tool"></i>
+                    <article className='mail-filter'><i className="fa-solid fa-envelope side-bar-tool"></i>
                         Show Unread mails
                         <input type="radio" id="unread" name="isRead" value={false} onChange={handleChange} />
                     </article>
                 </label>
-
+                
                 <label htmlFor="inbox">
                     <article className='mail-filter'><i className="fa-solid fa-inbox side-bar-tool"></i>
                         Inbox

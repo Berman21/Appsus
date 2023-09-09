@@ -12,6 +12,7 @@
  .mail-list table {
      width: 100%;
      table-layout: fixed;
+     border-collapse: collapse;
  }
 
  tr {
@@ -66,4 +67,34 @@
 
  .unread {
      background-color: #f2f6fc;
+     color: gray;
  }
+
+ .read .mail-preview-subject,
+ .read .mail-preview-from {
+     color: black;
+     font-weight: 600;
+ }
+
+ .read .mail-preview-body {
+     color: gray;
+ }
+
+ ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
