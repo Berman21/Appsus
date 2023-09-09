@@ -47,7 +47,8 @@ export function MailCompose() {
 
     function onSubmitMail(ev) {
         ev.preventDefault()
-
+        mailToSend.sentAt = Date.now()
+        
         mailService
             .save(mailToSend)
             .then(()=>{
