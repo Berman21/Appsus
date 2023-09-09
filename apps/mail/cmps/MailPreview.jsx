@@ -34,13 +34,13 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
 
     return (
         <React.Fragment>
-            <td><i className="fa-regular fa-star"></i></td>
+            <td title='star the message'><i className="fa-regular fa-star" ></i></td>
             <td><span className='mail-preview-from'>{mail.from}</span></td>
             <td><div><span className='mail-preview-subject'>{mail.subject}</span><span> - </span><span className='mail-preview-body'>{mail.body}</span></div></td>
             <td><span>{getMonth(mail.sentAt)} </span><span>{getDate(mail.sentAt)}</span></td>
             <td onClick={(event) => handleClick(event, mail.id)} ><i className="fa-regular fa-trash-can"></i></td>
-            {mail.isRead === false && <td onClick={(event) => toggleRead(event, mail)}><i className="fa-regular fa-envelope"></i></td>}
-            {mail.isRead && <td onClick={(event) => toggleRead(event, mail)}><i className="fa-regular fa-envelope-open"></i></td>}
+            {mail.isRead === false && <td title='manual mark as read/unread' onClick={(event) => toggleRead(event, mail)}><i className="fa-regular fa-envelope"></i></td>}
+            {mail.isRead && <td title='manual mark as read/unread' onClick={(event) => toggleRead(event, mail)}><i className="fa-regular fa-envelope-open"></i></td>}
         </React.Fragment>
     )
 }

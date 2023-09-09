@@ -53,13 +53,16 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy, onSetSort }) {
 
     if (searchBar) {
         return (
-            <section className="Mail-filter">
+            <section className="mail-search">
                 <form onSubmit={onSubmitFilter}>
 
                     <label htmlFor="txt"></label>
                     <input value={txt} onChange={handleChange} type="text" placeholder="Search mail" id="txt" name="txt" />
 
                 </form>
+
+                <button onClick={() => onSetSort('sentAt', true)}>Sort latest</button>
+                <button onClick={() => onSetSort('sentAt', false)}>Sort Oldest</button>
             </section>
         )
     } else {
@@ -75,7 +78,7 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy, onSetSort }) {
                 <label htmlFor="showAll">
                     <article className='mail-filter'><i className="fa-solid fa-envelopes-bulk side-bar-tool"></i>
                         Show all
-                        <input type="radio" id="showAll" name="isRead" value='' onChange={handleChange} />
+                        <input label='aaaa' type="radio" id="showAll" name="isRead" value='' onChange={handleChange} />
                     </article>
                 </label>
 

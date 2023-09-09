@@ -56,8 +56,7 @@ export function MailIndex() {
     return (
         <section className='mail-index'>
             <MailFilter searchBar={true} filterBy={filterBy} onSetFilterBy={onSetFilterBy} onSetSort={onSetSort} />
-            <button onClick={(event) => onSetSort('sentAt', true)}></button>
-            <button onClick={(event) => onSetSort('sentAt', false)}></button>
+            
             <article className='mail-main-screen flex'>
                 <MailFilter searchBar={false} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
                 <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead} />

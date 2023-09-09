@@ -16,7 +16,7 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <h3>LOGO!</h3>
+            <h3>Appsus</h3>
         </Link>
 
         <button className="nav-btn" onClick={() => isVisible()}><i className="fa-solid fa-bars"></i> </button>
