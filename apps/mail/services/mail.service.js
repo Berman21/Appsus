@@ -19,13 +19,22 @@ export const mailService = {
     save,
     getEmptyMail,
     getDefaultFilter,
+    sortBy,
 }
+
+function sortBy(sortBy,mails){
+    console.log('sort by is',sortBy);
+        if(sortBy.sentAt !== undefined){
+            mails.sort((mail1,mail2) => (mail1.sentAt - mail2.sentAt)*sortBy.sentAt)
+        }
+        return mails
+}
+
+
 
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
-        .then(mails => {
-            console.log(filterBy);
-            
+        .then(mails => {            
             if (filterBy.isRead === null) {
                 console.log('get all mails');
                 mails = mails.filter(mail => mail)
@@ -82,64 +91,71 @@ function _createMail(subject, body, isRead, sentAt, removedAt, from, to) {
     return mail
 }
 
+randomDate()
+function randomDate(start=new Date(2020, 0, 1), end= new Date(), startHour=0, endHour=24) {
+    var date = new Date(+start + Math.random() * (end - start));
+    date = date[Symbol.toPrimitive]('number')
+    return date
+  }
+
 function _createMails() {
     let mails = storageServiceSync.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
-        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, 'May 5', '', 'sale@ruroc.com', loggedinUser.email))
-        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, 'May 5', '', 'ads@Kawsaki.com', loggedinUser.email))
-        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, 'March 20', '', 'GymBros@gmail.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, 'Feb 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, 'May 5', '', 'sankes4us@yahoo.com', loggedinUser.email))
-        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, 'May 5', '', 'rings@someMail.com', loggedinUser.email))
-        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, 'March 20', '', 'motor@insurance.com', loggedinUser.email))
-        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, 'sep 10', '', 'Bugs4u@bugs.com', loggedinUser.email))
-        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, 'sep 10', '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false,randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
+        mails.push(_createMail('Helmet Discount', 'Summer Sale imcoming! get great discounts for all the new designs! sale end by the end of the month!', false, randomDate(), '', 'sale@ruroc.com', loggedinUser.email))
+        mails.push(_createMail('New Motorcycle', 'Uncover the new Kawasaki model coming in next month!', false, randomDate(), '', 'ads@Kawsaki.com', loggedinUser.email))
+        mails.push(_createMail('Gym Membership', 'Dear member, your membership is ending n few days, please renew it', false, randomDate(), '', 'GymBros@gmail.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'Hi..regarding your last commit, there are more bugs in your code than bugs on earth!', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('reptile accessories', 'Aint your danger noodle bored in the enclosure? time to do some renovation!', false, randomDate(), '', 'sankes4us@yahoo.com', loggedinUser.email))
+        mails.push(_createMail('Parents pressure', 'we got a lot of compalins from your family about not propsing yet..feel pressured yet?', false, randomDate(), '', 'rings@someMail.com', loggedinUser.email))
+        mails.push(_createMail('motor insurance', 'Hey there! jsut wanted to notify you that your wrecked motorcycle belongs to the trash!', false, randomDate(), '', 'motor@insurance.com', loggedinUser.email))
+        mails.push(_createMail('Programming Bootcamp', 'just a reminder to fix those damn bugs in your code..', false, randomDate(), '', 'Bugs4u@bugs.com', loggedinUser.email))
+        mails.push(_createMail('Gov Taxes', 'we remind you that 25% of your Stocks profits go to taxes lmao', false, randomDate(), '', 'taxes@gov.com', loggedinUser.email))
         storageServiceSync.saveToStorage(MAIL_KEY, mails)
     }
 }
