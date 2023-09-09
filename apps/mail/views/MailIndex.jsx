@@ -46,11 +46,11 @@ export function MailIndex() {
             })
     }
 
-    function onToggleRead(mail) {
-        mail.isRead = !mail.isRead
-        console.log(mail.isRead);
-        onSaveMail(mail)
-    }
+    // function onToggleRead(mail) {
+    //     mail.isRead = !mail.isRead
+    //     console.log(mail.isRead);
+    //     onSaveMail(mail)
+    // }
 
     if (!mails) return <div>Loading...</div>
     return (
@@ -59,7 +59,7 @@ export function MailIndex() {
             
             <article className='mail-main-screen flex'>
                 <MailFilter searchBar={false} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead} />
+                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail}  />
             </article>
             {false && <MailCompose />}
         </section>

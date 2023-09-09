@@ -26,7 +26,7 @@ export function MailList({ mails, onRemoveMail, onSaveMail,onToggleRead }) {
                 <tbody>
                     {mails.map(mail =>
                         <tr className={`mail-preview ${mail.isRead?'read':'unread'}`} key={mail.id} onClick={(event) => handleClick(event,mail)}>
-                        <MailPreview mail={mail} onRemoveMail={onRemoveMail} onToggleRead={onToggleRead} />
+                        <MailPreview mail={mail} onRemoveMail={onRemoveMail}/>
                         </tr>
                         )}
                 </tbody>

@@ -1,7 +1,7 @@
 const { Link, NavLink, useNavigate } = ReactRouterDOM
 import { utilService } from "../../../services/util.service.js";
 
-export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
+export function MailPreview({ mail, onRemoveMail }) {
 
     function handleClick(ev, mailId) {
         ev.stopPropagation()
@@ -11,7 +11,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
 
     function toggleRead(ev, mail) {
         ev.stopPropagation()
-        onToggleRead(mail)
+        // onToggleRead(mail)
         console.log('from toggle');
     }
 
