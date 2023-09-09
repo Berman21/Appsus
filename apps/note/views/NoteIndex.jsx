@@ -12,17 +12,18 @@ const { Link, Outlet } = ReactRouterDOM
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
+    const [color, setColor] = useState(0)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                // console.log(notes);
+                console.log(notes);
                 setNotes(notes)
 
             })
             .catch(err => console.log('err:', err))
-    }, [filterBy])
+    }, [filterBy, color])
 
     function onSetFilterBy(filterBy) {
         // console.log(filterBy);
@@ -56,11 +57,12 @@ export function NoteIndex() {
                 // console.log({ ...note, style: color });
             }
         })
-
+        
         console.log(newArr);
         noteService.save(newArr)
-
         onLoadNotes()
+        // ++color
+        // setColor(color)
     }
 
     function onLoadNotes() {

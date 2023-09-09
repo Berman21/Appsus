@@ -10,7 +10,7 @@ export function NoteList({ notes, onRemoveNote, onDuplicateNote, onChangeColor }
 
     useEffect(() => {
         setVisibility(visibility)
-        console.log(visibility);
+        // console.log(visibility);
     }, [visibility])
 
     function isVisible() {
@@ -26,7 +26,7 @@ export function NoteList({ notes, onRemoveNote, onDuplicateNote, onChangeColor }
                     <section className="card-tools">
                         <button onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
                         <button onClick={() => onDuplicateNote(note)}><i className="fa-solid fa-copy"></i></button>
-                        <button onClick={() => isVisible()}><i className="fa-solid fa-palette"></i></button>
+                        <button title="palette" onClick={() => isVisible()}><i className="fa-solid fa-palette"></i></button>
 
                         {visibility && <NotePalette note={note} onChangeColor={onChangeColor} />}
 
