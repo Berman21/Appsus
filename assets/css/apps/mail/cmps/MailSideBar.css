@@ -27,11 +27,30 @@
 }
 
 .mail-side-bar input {
-    opacity: 1;
+    opacity: 0;
 }
-
 
 .side-bar-tool {
     display: flex;
     padding: 0 20px;
+}
+
+.mail-search {
+    background-color: #f2f6fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail-search input {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 3rem;
+    width: 40%;
+    font-size: 1.1em;
+    padding-inline-start: 10px;
+    border-radius: 25em;
+    border: none;
 }

@@ -1,14 +1,28 @@
 header {
 
+<<<<<<< HEAD
     background: #94949480;
+=======
+    background: #eaf1fb;
+>>>>>>> 10666975760a202e068524174bb803879e8ca52d
     border-bottom: 2px solid white;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 0;
     width: 100%;
+}
+
+.app-header :first-child{
+    color: black;
+}
+
+.app-header h3{
+    font-size: 1.5em;
+    margin-inline-start: 2em;
 }
 
 .main-nav {

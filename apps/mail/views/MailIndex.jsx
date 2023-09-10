@@ -11,17 +11,21 @@ export function MailIndex() {
 
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [sort, setSort] = useState({ sentAt: -1 })
 
     useEffect(() => {
         mailService.query(filterBy)
-            .then(mails => setMails(mails))
+            .then(mails => setMails(mailService.sortBy(sort, mails)))
             .catch(err => console.log('err:', err))
-    }, [filterBy])
-
+    }, [filterBy, sort])
 
 
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+    }
+
+    function onSetSort(sortMethod, isDesc = false) {
+        setSort(prevSort => prevSort = { [sortMethod]: (isDesc) ? -1 : 1 })
     }
 
     function onSaveMail(mail) {
@@ -42,19 +46,20 @@ export function MailIndex() {
             })
     }
 
-    function onToggleRead(mail) {
-        mail.isRead = !mail.isRead
-        console.log(mail.isRead);
-        onSaveMail(mail)
-    }
+    // function onToggleRead(mail) {
+    //     mail.isRead = !mail.isRead
+    //     console.log(mail.isRead);
+    //     onSaveMail(mail)
+    // }
 
     if (!mails) return <div>Loading...</div>
     return (
         <section className='mail-index'>
-            <MailFilter searchBar={true} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            <MailFilter searchBar={true} filterBy={filterBy} onSetFilterBy={onSetFilterBy} onSetSort={onSetSort} />
+            
             <article className='mail-main-screen flex'>
                 <MailFilter searchBar={false} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail} onToggleRead={onToggleRead} />
+                <MailList mails={mails} onRemoveMail={onRemoveMail} onSaveMail={onSaveMail}  />
             </article>
             {false && <MailCompose />}
         </section>

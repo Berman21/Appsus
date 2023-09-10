@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
+export function MailFilter({ searchBar, filterBy, onSetFilterBy, onSetSort }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
     const [isOn, setIsOn] = useState(false)
@@ -25,11 +25,11 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
 
             case 'radio':
                 console.log(target.value);
-                if(target.value === 'true'){
+                if (target.value === 'true') {
                     value = true
-                }else if(target.value === 'false'){
+                } else if (target.value === 'false') {
                     value = false
-                }else{
+                } else {
                     value = null
                 }
                 break
@@ -49,17 +49,20 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
         // console.log(target.value);
     }
 
-    const { txt,isRead} = filterByToEdit
+    const { txt, isRead } = filterByToEdit
 
     if (searchBar) {
         return (
-            <section className="Mail-filter">
+            <section className="mail-search">
                 <form onSubmit={onSubmitFilter}>
 
                     <label htmlFor="txt"></label>
                     <input value={txt} onChange={handleChange} type="text" placeholder="Search mail" id="txt" name="txt" />
 
                 </form>
+
+                <button onClick={() => onSetSort('sentAt', true)}>Sort latest</button>
+                <button onClick={() => onSetSort('sentAt', false)}>Sort Oldest</button>
             </section>
         )
     } else {
@@ -75,7 +78,7 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
                 <label htmlFor="showAll">
                     <article className='mail-filter'><i className="fa-solid fa-envelopes-bulk side-bar-tool"></i>
                         Show all
-                        <input type="radio" id="showAll" name="isRead" value='' checked onChange={handleChange} />
+                        <input label='aaaa' type="radio" id="showAll" name="isRead" value='' onChange={handleChange} />
                     </article>
                 </label>
 
@@ -92,7 +95,7 @@ export function MailFilter({ searchBar, filterBy, onSetFilterBy }) {
                         <input type="radio" id="unread" name="isRead" value={false} onChange={handleChange} />
                     </article>
                 </label>
-                
+
                 <label htmlFor="inbox">
                     <article className='mail-filter'><i className="fa-solid fa-inbox side-bar-tool"></i>
                         Inbox
